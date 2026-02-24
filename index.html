@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wing Ding · Wedding planner</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: #fffaf5;  /* soft wedding hue */
+            color: #2e2e2e;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* container for consistent width */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header / navbar */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid #ffe4e1;
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #b45f5a;
+            font-family: 'Georgia', serif;
+        }
+        .logo h1 i {
+            color: #d4a5a0;
+            font-size: 2rem;
+            margin-right: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-weight: 500;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4a3b3b;
+            font-size: 1.1rem;
+            transition: 0.2s;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover {
+            border-bottom-color: #dbb2af;
+            color: #b45f5a;
+        }
+
+        /* main content area */
+        main {
+            flex: 1;
+            padding: 40px 0 60px;
+        }
+
+        /* page titles */
+        .page-title {
+            font-size: 2.4rem;
+            font-weight: 300;
+            color: #814b47;
+            margin-bottom: 24px;
+            border-left: 8px solid #efc2be;
+            padding-left: 24px;
+            font-family: 'Georgia', serif;
+        }
+
+        /* cards & sections */
+        .card {
+            background: white;
+            border-radius: 36px 12px 36px 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.02), 0 6px 10px rgba(0,0,0,0.03);
+            padding: 32px;
+            margin: 32px 0;
+            border: 1px solid #f6dfdf;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .info-block i {
+            color: #b8817c;
+            width: 32px;
+            font-size: 1.4rem;
+            margin-right: 12px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            font-size: 1.15rem;
+        }
+
+        .info-item a {
+            color: #4a3b3b;
+            text-decoration: none;
+            border-bottom: 1px dotted #d4a5a0;
+        }
+        .info-item a:hover {
+            color: #b45f5a;
+            border-bottom: 1px solid #b45f5a;
+        }
+
+        .address-box {
+            background: #fef6f4;
+            padding: 24px;
+            border-radius: 24px;
+            border-left: 5px solid #e6b9b4;
+            line-height: 1.8;
+            margin-top: 16px;
+        }
+
+        .map-placeholder {
+            background: #e9dbd9;
+            height: 200px;
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6a5150;
+            font-style: italic;
+            border: 2px dashed #cfa39e;
+            margin-top: 24px;
+        }
+
+        /* privacy & terms styling */
+        .legal-section {
+            background: white;
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .legal-section h2 {
+            color: #814b47;
+            font-weight: 400;
+            font-size: 2rem;
+            margin-bottom: 24px;
+            font-family: 'Georgia', serif;
+        }
+
+        .legal-section h3 {
+            font-weight: 500;
+            color: #b45f5a;
+            margin: 24px 0 12px;
+            font-size: 1.5rem;
+        }
+
+        .legal-section p {
+            margin-bottom: 16px;
+            color: #3d3332;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 28px 0 20px;
+            color: #6e5b58;
+            border-top: 1px solid #f0d5d2;
+            margin-top: 40px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: #a67671;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: #814b47;
+        }
+
+        /* homepage hero */
+        .hero {
+            background: linear-gradient(135deg, #faeae8 0%, #ffeae5 100%);
+            border-radius: 48px 16px 48px 16px;
+            padding: 48px 32px;
+            margin: 24px 0 40px;
+        }
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #6f4a46;
+            font-family: 'Georgia', serif;
+            line-height: 1.2;
+        }
+        .hero h2 i {
+            color: #c28882;
+        }
+        .hero p {
+            font-size: 1.4rem;
+            margin-top: 16px;
+            color: #6b4f4b;
+        }
+        .btn {
+            display: inline-block;
+            background: #b8817c;
+            color: white;
+            padding: 12px 36px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            margin-top: 28px;
+            text-decoration: none;
+            border: 1px solid #b8817c;
+            transition: 0.2s;
+        }
+        .btn:hover {
+            background: #a06b66;
+            border-color: #a06b66;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .header-flex {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-flex">
+            <div class="logo">
+                <h1><i class="fas fa-feather-alt"></i> Wing Ding</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#terms">Terms</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- HOMEPAGE section (anchor home) -->
+            <section id="home">
+                <div class="hero">
+                    <h2><i class="fas fa-ring"></i> Weddings begin here</h2>
+                    <p>Wing Ding · we don't just plan, we weave magic</p>
+                    <p style="font-size: 1.2rem; max-width: 600px;">Elegant, stress‑free wedding planning in Mumbai & beyond. Your story, our expertise.</p>
+                    <a href="#contact" class="btn"><i class="fas fa-envelope"></i> Let’s talk</a>
+                </div>
+
+                <!-- quick intro + nature of business -->
+                <div class="card" style="background: #fefcfb;">
+                    <h3 style="color: #b45f5a; font-size: 2rem; font-weight: 300; margin-bottom: 12px;"><i class="fas fa-heart" style="color: #e3b3ae;"></i> Wedding planner</h3>
+                    <p style="font-size: 1.2rem;">Nature of business: <strong>Wedding Planner</strong> — crafting timeless celebrations from intimate gatherings to grand festivities.</p>
+                    <div style="margin-top: 24px; display: flex; gap: 16px; flex-wrap: wrap;">
+                        <span style="background: #eed9d6; padding: 8px 20px; border-radius: 60px;"><i class="fas fa-phone-alt"></i> 8828712340</span>
+                        <span style="background: #eed9d6; padding: 8px 20px; border-radius: 60px;"><i class="fas fa-envelope"></i> wingdingevents8@gmail.com</span>
+                        <span style="background: #eed9d6; padding: 8px 20px; border-radius: 60px;"><i class="fas fa-map-pin"></i> Gokuldham, Mumbai</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRIVACY POLICY section -->
+            <section id="privacy" style="scroll-margin-top: 80px;">
+                <h2 class="page-title"><i class="fas fa-lock"></i> Privacy policy</h2>
+                <div class="legal-section">
+                    <p style="font-size: 1.1rem;">Last updated: March 2025</p>
+                    <p>Wing Ding (we, us) is committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information when you use our wedding planning services or visit our website.</p>
+                    
+                    <h3>Information we collect</h3>
+                    <p>We may collect personal details such as name, phone number (8828712340), email address (wingdingevents8@gmail.com), event preferences, and correspondence. We also gather anonymized analytics to improve our website.</p>
+                    
+                    <h3>How we use your information</h3>
+                    <p>To provide wedding planning services, communicate about your event, send updates, and personalise your experience. We never sell your data to third parties.</p>
+                    
+                    <h3>Data security</h3>
+                    <p>We implement appropriate technical measures to keep your information safe. Unfortunately, no transmission over the internet is 100% secure.</p>
+
+                    <h3>Contact us</h3>
+                    <p>If you have questions about this policy, please contact us at wingdingevents8@gmail.com or visit our address: Chirag Saraf, B-301, Manavsthal-2, Gokuldham, Mumbai 400063.</p>
+                    <p><i class="fas fa-shield-alt" style="color:#b8817c;"></i> Your trust matters — we treat your data with care.</p>
+                </div>
+            </section>
+
+            <!-- TERMS AND CONDITIONS section -->
+            <section id="terms" style="scroll-margin-top: 80px; margin-top: 48px;">
+                <h2 class="page-title"><i class="fas fa-file-contract"></i> Terms & conditions</h2>
+                <div class="legal-section">
+                    <h3>1. Acceptance of terms</h3>
+                    <p>By accessing or using Wing Ding’s services and website, you agree to be bound by these Terms & Conditions. If you do not agree, please refrain from using our services.</p>
+
+                    <h3>2. Services</h3>
+                    <p>Wing Ding acts as a wedding planning coordinator. We collaborate with vendors and venues to bring your vision to life. All specific agreements will be detailed in a separate contract.</p>
+
+                    <h3>3. Payments & cancellations</h3>
+                    <p>Payment terms are defined per event agreement. A cancellation fee may apply if you terminate services after booking. Please refer to your individual contract for details.</p>
+
+                    <h3>4. Intellectual property</h3>
+                    <p>Content on this website (text, logos, images) is owned by or licensed to Wing Ding. You may not reproduce or distribute any material without written consent.</p>
+
+                    <h3>5. Limitation of liability</h3>
+                    <p>Wing Ding is not liable for indirect damages arising from vendor failures or unforeseen circumstances, though we always strive to manage every detail with care.</p>
+
+                    <h3>6. Governing law</h3>
+                    <p>These terms are governed by the laws of India. Any disputes will be subject to the exclusive jurisdiction of courts in Mumbai.</p>
+
+                    <p><i class="fas fa-gavel"></i> For questions, reach out: wingdingevents8@gmail.com</p>
+                </div>
+            </section>
+
+            <!-- CONTACT PAGE section (with all details) -->
+            <section id="contact" style="scroll-margin-top: 80px; margin-top: 48px;">
+                <h2 class="page-title"><i class="fas fa-address-card"></i> Contact Wing Ding</h2>
+                
+                <div class="card contact-grid">
+                    <!-- left side: contact info & address -->
+                    <div>
+                        <div class="info-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span><strong>Mobile:</strong> <a href="tel:8828712340">8828712340</a></span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <span><strong>Email:</strong> <a href="mailto:wingdingevents8@gmail.com">wingdingevents8@gmail.com</a></span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <span><strong>Address:</strong></span>
+                        </div>
+                        <div class="address-box">
+                            <i class="fas fa-location-dot" style="color:#b45f5a; margin-right: 8px;"></i>
+                            <strong>Chirag Saraf, B-301, Manavsthal-2, Gokuldham,</strong><br>
+                            Mumbai, Mumbai, Maharashtra, 400063
+                        </div>
+
+                        <!-- simple map representation (decorative) -->
+                        <div class="map-placeholder">
+                            <i class="fas fa-map" style="font-size: 2rem; opacity: 0.6;"></i> 
+                            <span style="margin-left: 8px;">📍 Gokuldham, Mumbai – exact location</span>
+                        </div>
+                    </div>
+
+                    <!-- right side: short note / form isn't required but keep it friendly -->
+                    <div style="background: #fcf1ef; border-radius: 28px; padding: 28px;">
+                        <h3 style="color: #814b47; font-size: 2rem; font-weight: 300; margin-bottom: 16px;"><i class="fas fa-comment-dots"></i> Say hello</h3>
+                        <p style="margin-bottom: 24px;">Prefer to write? We'd love to hear about your dream wedding. Reach out via call, email, or just drop by our Gokuldham office (please schedule an appointment).</p>
+                        <p><i class="fas fa-check-circle" style="color: #b8817c;"></i> We usually reply within 24 hours.</p>
+                        <div style="margin-top: 32px;">
+                            <p style="font-weight: 500;"><i class="fas fa-clock"></i> Office hours: 10am – 7pm (Mon–Sat)</p>
+                        </div>
+                        <!-- subtle business nature tag -->
+                        <div style="margin-top: 24px; border-top: 2px dashed #e6c0bb; padding-top: 16px;">
+                            <i class="fas fa-glass-cheers"></i> <strong>Wing Ding</strong> – Wedding planner, Mumbai.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div> <!-- end container -->
+    </main>
+
+    <!-- FOOTER with copyright and utility links -->
+    <footer style="background: #ffffff; border-top: 2px solid #f0d5d2;">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#home"><i class="fas fa-home"></i> Home</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#terms">Terms</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright">
+                <i class="far fa-copyright"></i> 2025 Wing Ding (Wedding Planner). All rights reserved.<br>
+                <span style="opacity: 0.7;">📍 Chirag Saraf, B-301, Manavsthal-2, Gokuldham, Mumbai 400063</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- smooth scroll for anchor links (basic) -->
+    <script>
+        (function() {
+            const links = document.querySelectorAll('.nav-links a, .footer-links a, .btn[href="#contact"]');
+            for (let link of links) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const hash = this.getAttribute('href');
+                    if (hash && hash.startsWith('#')) {
+                        const targetEl = document.querySelector(hash);
+                        if (targetEl) {
+                            targetEl.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
